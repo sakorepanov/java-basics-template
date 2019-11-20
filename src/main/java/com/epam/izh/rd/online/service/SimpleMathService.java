@@ -109,7 +109,21 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        if (number > 1) {
+            long first = 0;
+            long second = 1;
+            long result = 0;
+            for (int i = 2; i <= number; i++) {
+                result = first + second;
+                first = second;
+                second = result;
+            }
+            return result;
+        } else if (number == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -118,7 +132,16 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        for (int i = values.length - 1; i >= 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (values[j] > values[j + 1]) {
+                    int buffer = values[j];
+                    values[j] = values[j + 1];
+                    values[j + 1] = buffer;
+                }
+            }
+        }
+        return values;
     }
 
     /**
