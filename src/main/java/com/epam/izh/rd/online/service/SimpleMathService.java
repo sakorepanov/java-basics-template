@@ -59,8 +59,21 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-
-        return new int[]{};
+        int lenNewMas = 0;
+        for (int i : values) {
+            if (i % 2 == 0) {
+                lenNewMas++;
+            }
+        }
+        int[] newMas = new int[lenNewMas];
+        int index = 0;
+        for (int i : values) {
+            if (i % 2 == 0) {
+                newMas[index] = i;
+                index++;
+            }
+        }
+        return newMas;
     }
 
     /**
@@ -70,7 +83,18 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        if (initialVal == 0 || initialVal == 1) {
+            return 1;
+        } else if (initialVal > 1) {
+            long result = 1;
+            for (long i = initialVal; i > 1; i--) {
+                result = result * i;
+            }
+            return result;
+
+        } else {
+            return -1L;
+        }
     }
 
     /**
