@@ -33,7 +33,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        int max = 0;
+        int max = values[0];
         for (int i : values) {
             max = Integer.max(max, i);
         }
@@ -48,7 +48,7 @@ public class SimpleMathService implements MathService {
     public int sum(int[] values) {
         int sum = 0;
         for (int i : values) {
-            sum = sum + i;
+            sum += i;
         }
         return sum;
     }
@@ -91,7 +91,6 @@ public class SimpleMathService implements MathService {
                 result = result * i;
             }
             return result;
-
         } else {
             return -1L;
         }
@@ -152,7 +151,14 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        boolean result = true;
+        for (int i = 2; i * i <= number; i++) {
+            if (number % i == 0) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -162,6 +168,10 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        int[] result = new int[values.length];
+        for (int i = 0, j = values.length - 1; i < values.length; i++, j--) {
+            result[i] = values[j];
+        }
+        return result;
     }
 }
