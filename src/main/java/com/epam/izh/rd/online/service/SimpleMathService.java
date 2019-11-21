@@ -1,7 +1,5 @@
 package com.epam.izh.rd.online.service;
 
-import java.lang.reflect.Array;
-
 public class SimpleMathService implements MathService {
 
     /**
