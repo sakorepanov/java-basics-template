@@ -13,7 +13,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int compare(int value1, int value2) {
-        return -2;
+        return Integer.compare(value1, value2);
     }
 
     /**
@@ -22,7 +22,7 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int value1, int value2) {
-        return -1;
+        return Integer.max(value1, value2);
     }
 
     /**
@@ -31,7 +31,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int maxFrom(int[] values) {
-        return -1;
+        int max = values[0];
+        for (int i : values) {
+            max = Integer.max(max, i);
+        }
+        return max;
     }
 
     /**
@@ -40,7 +44,11 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int sum(int[] values) {
-        return -1;
+        int sum = 0;
+        for (int i : values) {
+            sum += i;
+        }
+        return sum;
     }
 
     /**
@@ -49,7 +57,21 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] getEvenDigits(int[] values) {
-        return new int[]{};
+        int lenNewMas = 0;
+        for (int i : values) {
+            if (i % 2 == 0) {
+                lenNewMas++;
+            }
+        }
+        int[] newMas = new int[lenNewMas];
+        int index = 0;
+        for (int i : values) {
+            if (i % 2 == 0) {
+                newMas[index] = i;
+                index++;
+            }
+        }
+        return newMas;
     }
 
     /**
@@ -59,7 +81,17 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFactorial(int initialVal) {
-        return -1L;
+        if (initialVal == 0 || initialVal == 1) {
+            return 1;
+        } else if (initialVal > 1) {
+            long result = 1;
+            for (long i = initialVal; i > 1; i--) {
+                result = result * i;
+            }
+            return result;
+        } else {
+            return -1L;
+        }
     }
 
     /**
@@ -74,7 +106,21 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public long calcFibonacci(int number) {
-        return -1L;
+        if (number > 1) {
+            long first = 0;
+            long second = 1;
+            long result = 0;
+            for (int i = 2; i <= number; i++) {
+                result = first + second;
+                first = second;
+                second = result;
+            }
+            return result;
+        } else if (number == 1) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -83,7 +129,16 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] sort(int[] values) {
-        return new int[]{};
+        for (int i = values.length - 1; i >= 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (values[j] > values[j + 1]) {
+                    int buffer = values[j];
+                    values[j] = values[j + 1];
+                    values[j + 1] = buffer;
+                }
+            }
+        }
+        return values;
     }
 
     /**
@@ -94,7 +149,14 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public boolean isPrimary(int number) {
-        return false;
+        boolean result = true;
+        for (int i = 2; i * i <= number; i++) {
+            if (number % i == 0) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -104,6 +166,10 @@ public class SimpleMathService implements MathService {
      */
     @Override
     public int[] reverseArray(int[] values) {
-        return new int[]{};
+        int[] result = new int[values.length];
+        for (int i = 0, j = values.length - 1; i < values.length; i++, j--) {
+            result[i] = values[j];
+        }
+        return result;
     }
 }
